@@ -28,10 +28,13 @@ var tomcat = &cobra.Command{
 	}}
 
 func startTomcat(connection *ssh.Client) {
+	if Auto.TomcatPath == "" {
+		return
+	}
 	stpTomcat(connection)
 	ssh_server.OpenSessionRunCmd(connection, Auto.TomcatPath+"/bin/startup.sh")
-	log.Println("启动成功,休眠20秒后检测是否启动成功进程")
-	time.Sleep(100000)
+	log.Println("启动成功,休眠60秒后检测是否启动成功进程")
+	time.Sleep(time.Duration(60) * time.Second)
 	cmd := "ps -ef |grep " + Auto.TomcatPath + "/" + " |grep -v \"grep\"|awk '{print $2}'"
 	buff := ssh_server.OpenSessionRunCmdString(connection, cmd)
 	if buff != "" {
@@ -53,6 +56,9 @@ func stpTomcat(connection *ssh.Client) {
 }
 
 func cpProfile(connection *ssh.Client) {
+	if Auto.ProfileAddress == "" {
+		return
+	}
 	profileAddress := Auto.ProfileAddress
 	if profileAddress == "" {
 		return

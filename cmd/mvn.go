@@ -30,7 +30,7 @@ func mvnPackage() string {
 	if !s.IsDir() {
 		log.Println("非文件夹，不自动打包")
 
-		if strings.HasSuffix(s.Name(), ".war") {
+		if !strings.HasSuffix(s.Name(), ".war") {
 			log.Fatalf("不是文件夹，也不是war包")
 		}
 		return Auto.WarPathLocal
@@ -46,10 +46,10 @@ func mvnPackage() string {
 		log.Fatalf("cmd.Run() failed with %s\n", err.Error())
 	}
 	log.Printf("打包完成")
-	files, err := ioutil.ReadDir(Auto.WarPathLocal + "/target")
+	files, err := ioutil.ReadDir(Auto.WarPathLocal + string(os.PathSeparator) + "target")
 	for _, f := range files {
 		if strings.HasSuffix(f.Name(), ".war") {
-			filename := Auto.WarPathLocal + "/target/" + f.Name()
+			filename := Auto.WarPathLocal + string(os.PathSeparator) + "target" + string(os.PathSeparator) + f.Name()
 			log.Printf(filename)
 			return filename
 		}

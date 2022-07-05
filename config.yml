@@ -2,9 +2,9 @@ username: fone
 password: 111111
 address: 192.168.1.179:22
 #项目地址 如果是war地址，则自动上传，如果是项目地址，进行当前地址进行打包操作
-warPathLocal: /Users/kid/code/d-18972/shang/target/shang.war
-projectPathOnLine: /home/fone/project
-#Tomcat地址，方便准确kill tomcat进程
-tomcatPath: /home/fone/server/apache-tomcat-8.0.28
-#配置文件地址 替换配置文件   @local: xxxxx @online: 默认@online:
-profileAddress: /home/fone/docker/tomcat/application.properties
+warPathLocal: /Users/kid/code/d-18972/shang
+projectPathOnLine: /home/fone/single_project
+#Tomcat地址，方便准确kill tomcat进程 启动tomcat
+#tomcatPath: /home/fone/server/apache-tomcat-8.0.28
+##配置文件地址 替换配置文件   @local: xxxxx @online: 默认@online:  空为不替换
+#profileAddress: /home/fone/docker/tomcat/application.properties

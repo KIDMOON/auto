@@ -120,5 +120,5 @@ func cloneFile(connection *ssh.Client, remoteFilePath string, localFileName stri
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
-	log.Printf("文件上传成功[%s->%s]本地文件大小：%s，上传文件大小：%s", localFileName, remoteFileName, formatFileSize(localFileInfo.Size()), formatFileSize(n))
+	log.Printf("文件上传成功[%s->%s]本地文件大小：%s，上传文件大小：%s", localFileName, remoteFile.Name(), formatFileSize(localFileInfo.Size()), formatFileSize(n))
 }
